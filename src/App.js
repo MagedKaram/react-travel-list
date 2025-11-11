@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import AddForm from "./components/AddForm";
+import PackageList from "./components/PackageList";
+import Stats from "./components/Stats";
+const initialItems = [
+  { id: 1, description: "Passports", quantity: 2, packed: false },
+  { id: 2, description: "Socks", quantity: 12, packed: true },
+  { id: 3, description: "Bags", quantity: 18, packed: false },
+];
 
 function App() {
+  const [itemsNumber, setItemsNumber] = useState(3);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>🏝️ far away🛍️</h1>
+      <AddForm items={initialItems} />
+      <PackageList items={initialItems} />
+      <Stats />
     </div>
   );
 }
