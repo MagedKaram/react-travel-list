@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddForm = ({ items }) => {
+const AddForm = ({ onAddItem }) => {
   const [quantity, setQuantity] = useState(0);
   const [description, setDescription] = useState("");
 
@@ -8,7 +8,8 @@ const AddForm = ({ items }) => {
     e.preventDefault();
     if (description === "") return;
     const item = { quantity, description, packed: false, id: Date.now() };
-    console.log(item);
+    onAddItem(item);
+
     setDescription("");
     setQuantity(1);
   }

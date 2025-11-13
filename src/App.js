@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 import AddForm from "./components/AddForm";
 import PackageList from "./components/PackageList";
 import Stats from "./components/Stats";
+import Items from "./components/Items";
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
   { id: 2, description: "Socks", quantity: 12, packed: true },
@@ -9,12 +10,34 @@ const initialItems = [
 ];
 
 function App() {
-  const [itemsNumber, setItemsNumber] = useState(3);
+  const [items, setItems] = useState(initialItems);
+
+  const hundelAddItems = (item) => {
+    console.log(item);
+    setItems((items) => [...items, item]);
+  };
+
+  const hundelDelete = (id) => {
+    setItems((items) => items.filter((item) => item.id !== id));
+  };
+
+  const hundlePacked = (id) => {
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  };
+
   return (
     <div className="app">
       <h1>🏝️ far away🛍️</h1>
-      <AddForm items={initialItems} />
-      <PackageList items={initialItems} />
+      <AddForm onAddItem={hundelAddItems} />
+      <PackageList
+        items={items}
+        onDeleteditem={hundelDelete}
+        onTogglePacked={hundlePacked}
+      />
       <Stats />
     </div>
   );
