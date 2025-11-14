@@ -1,4 +1,4 @@
-import { lazy, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import AddForm from "./components/AddForm";
 import PackageList from "./components/PackageList";
 import Stats from "./components/Stats";
@@ -38,7 +38,7 @@ function App() {
         onDeleteditem={hundelDelete}
         onTogglePacked={hundlePacked}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
