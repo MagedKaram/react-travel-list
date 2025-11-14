@@ -28,6 +28,9 @@ function App() {
       )
     );
   };
+  const hundleClearList = () => {
+    setItems([]);
+  };
 
   return (
     <div className="app">
@@ -37,6 +40,7 @@ function App() {
         items={items}
         onDeleteditem={hundelDelete}
         onTogglePacked={hundlePacked}
+        onClearList={hundleClearList}
       />
       <Stats items={items} />
     </div>
